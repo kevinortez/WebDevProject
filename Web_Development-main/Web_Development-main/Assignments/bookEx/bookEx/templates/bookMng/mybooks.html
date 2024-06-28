@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    My Published Books
+{% endblock title %}
+
+{% block content %}
+    <h1 align="center"> Books Published</h1>
+    {% if book_list %}
+        <table class="text-nowrap" border="2" width = "400">
+            <tr>
+                <th>Book Name</th>
+                <th>Cover</th>
+            </tr>
+            {% for book in book_list %}
+                <tr>
+                    <td>
+                        <a href="book_detail/{{ book.id }}">
+                            {{ book.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <img src="{% static book.pic_path %}" height="200">
+                    </td>
+                    <td align="center">
+                        <a class = "btn btn-large btn-danger " data-toggle="confirmation" href="book_delete/{{ book.id }}" data-title="Delete book?" data-placement="right" data-singleton="true" data-popout="true">
+                            <img src="{% static 'red_x.png' %}" height="12"> Delete
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>You haven't published any books yet. <a class="btn btn-secondary font-weight-bold" href="/postbook">Publish a book</a></p>
+    {% endif %}
+{% endblock content %}
+
+

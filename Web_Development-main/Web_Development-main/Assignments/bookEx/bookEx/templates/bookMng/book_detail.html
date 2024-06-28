@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{book.name}} details
+{% endblock title %}
+
+{% block content %}
+    <h1 align="center"> {{ book.name }} Detail</h1>
+    <p align="center">
+        <img src="{% static book.pic_path %}" height="300">
+    </p>
+
+    <table align = "center" border="2" width = "600" id="book_details_table">
+        <tr>
+            <th>Price</th>
+            <th>Publisher</th>
+            <th>Website</th>
+            <th>Publish Date</th>
+        </tr>
+            <tr>
+                <td> ${{ book.price }} </td>
+                <td> {{ book.username }} </td>
+                <td> {{ book.web }} </td>
+                <td> {{ book.publishdate }} </td>
+            </tr>
+    </table>
+    <div class="ratingbox">
+        <span class="heading">User Rating</span>
+        <span class="fa fa-star {% if avg_rating >= 1 %}checked{% endif %}"></span>
+        <span class="fa fa-star {% if avg_rating >= 2 %}checked{% endif %}"></span>
+        <span class="fa fa-star {% if avg_rating >= 3 %}checked{% endif %}"></span>
+        <span class="fa fa-star {% if avg_rating >= 4 %}checked{% endif %}"></span>
+        <span class="fa fa-star {% if avg_rating >= 5 %}checked{% endif %}"></span>
+        {% if num_ratings > 0 %}<p>{{ avg_rating }} average based on {{num_ratings}} reviews.</p>
+        {% else %}
+            <p>No reviews yet (Be the first).</p>
+        {% endif %}
+        <hr style="border:3px solid #f1f1f1">
+        <div class="row">
+          <div class="side">
+            <div>5 star</div>
+          </div>
+          <div class="middle">
+            <div class="bar-container">
+              <div class="bar-5"></div>
+            </div>
+          </div>
+          <div class="side right">
+            <div>{{ rating_list.4 }}</div>
+          </div>
+          <div class="side">
+            <div>4 star</div>
+          </div>
+          <div class="middle">
+            <div class="bar-container">
+              <div class="bar-4"></div>
+            </div>
+          </div>
+          <div class="side right">
+            <div>{{ rating_list.3 }}</div>
+          </div>
+          <div class="side">
+            <div>3 star</div>
+          </div>
+          <div class="middle">
+            <div class="bar-container">
+              <div class="bar-3"></div>
+            </div>
+          </div>
+          <div class="side right">
+            <div>{{ rating_list.2 }}</div>
+          </div>
+          <div class="side">
+            <div>2 star</div>
+          </div>
+          <div class="middle">
+            <div class="bar-container">
+              <div class="bar-2"></div>
+            </div>
+          </div>
+          <div class="side right">
+            <div>{{ rating_list.1 }}</div>
+          </div>
+          <div class="side">
+            <div>1 star</div>
+          </div>
+          <div class="middle">
+            <div class="bar-container">
+              <div class="bar-1"></div>
+            </div>
+          </div>
+          <div class="side right">
+            <div>{{ rating_list.0 }}</div>
+          </div>
+        </div>
+    </div>
+<style>
+    /* Individual bars */
+.bar-5 {width: {{ rating_list_percent.4 }}%; height: 18px; background-color: #04AA6D;}
+.bar-4 {width: {{ rating_list_percent.3 }}%; height: 18px; background-color: #2196F3;}
+.bar-3 {width: {{ rating_list_percent.2 }}%; height: 18px; background-color: #00bcd4;}
+.bar-2 {width: {{ rating_list_percent.1 }}%; height: 18px; background-color: #ff9800;}
+.bar-1 {width: {{ rating_list_percent.0 }}%; height: 18px; background-color: #f44336;}
+
+</style>
+{% endblock content %}

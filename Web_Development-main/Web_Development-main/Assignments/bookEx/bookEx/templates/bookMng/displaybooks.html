@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Display Books
+{% endblock title %}
+
+
+{% block content %}
+    <h1 align="center"> This is our Book Exchange System</h1>
+    <table class='text-nowrap' border="2" width = "400">
+        <tr>
+            <th>Book Name</th>
+            <th>Cover</th>
+            <th>Rating</th>
+            <th>Favorite</th>
+            <th>Price</th>
+            <th>Add to Cart</th>
+
+        </tr>
+        {% for book in book_list %}
+            <tr>
+                <td>
+                    <a href="book_detail/{{ book.0.id }}">
+                        {{ book.0.name }}
+                    </a>
+                </td>
+                <td class="text-center"> <img src="{% static book.0.pic_path %}" height="200"> </td>
+                <td class="p-1">
+                    <form class ='rate-form {% if book.1 <= 2.0 %} text-muted {% endif %} {% if book.1 >= 4.0 %} font-weight-bold {% endif %}' action="ratebook" method="post">
+                        {% if book.1 is null %}
+                            <p>No Reviews Yet <b>(Be the First)</b>.</p>
+                        {% endif %}
+                        <input type="hidden" name="book_id" value="{{ book.0.id }}">
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <button type="submit" name="rating" value="1" class="fa fa-star {% if book.1 >= 1 %}checked{% endif %} invisible_button" id="1 star"></button>
+                        <button type="submit" name="rating" value="2" class="fa fa-star {% if book.1 >= 2 %}checked{% endif %} invisible_button" id="2 stars"></button>
+                        <button type="submit" name="rating" value="3" class="fa fa-star {% if book.1 >= 3 %}checked{% endif %} invisible_button" id="3 stars"></button>
+                        <button type="submit" name="rating" value="4" class="fa fa-star {% if book.1 >= 4 %}checked{% endif %} invisible_button" id="4 stars"></button>
+                        <button type="submit" name="rating" value="5" class="fa fa-star {% if book.1 >= 5 %}checked{% endif %} invisible_button" id="5 stars"></button>
+                        {% if book.1 is not null %}
+                            {{ book.1 }}
+                        {% endif %}
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td class="text-center">
+                     <form class ='fav-form ' action="favorite" method="post" novalidate>
+                         <input type="hidden" name="book_id" value="{{ book.0.id }}">
+                         <input type="hidden" name="user_id" value="{{ user.id }}">
+                         {% if book.2.is_favorite %}
+                            <button class="btn btn-secondary" type="submit" name="favorite">Remove from Favorites</button>
+                         {% else %}
+                            <button class="btn btn-primary" type="submit" name="favorite">Add to Favorites</button>
+                         {% endif %}
+                         {% csrf_token %}
+                     </form>
+                </td>
+                <td>
+                    ${{ book.0.price }}
+                </td>
+                <td>
+                    <form method="post" action="{% url 'add_to_cart' book.0.id %}">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="1" min="1">
+                        <button class="btn btn-large btn-primary" value="{{ request.path }}" type="submit">Add to Cart</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

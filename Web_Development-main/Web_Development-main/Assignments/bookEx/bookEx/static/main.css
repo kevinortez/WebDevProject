@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+.gradient-custom{
+    background: rgb(2,0,36);
+    background: rgb(137,28,156);
+    background: -moz-linear-gradient(39deg, rgba(137,28,156,1) 0%, rgba(0,212,255,1) 100%);
+    background: -webkit-linear-gradient(39deg, rgba(137,28,156,1) 0%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(39deg, rgba(137,28,156,1) 0%, rgba(0,212,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#891c9c",endColorstr="#00d4ff",GradientType=1);
+}
+
+li a:hover{
+    background: radial-gradient(ellipse, rgba(0,212,255,0.8) 0%, rgba(137,28,156,0.0) 100%);
+    color: white;
+}
+a{
+    color: blue;
+    display: inline-block;
+    padding: 3px 8px;
+}
+li{
+    display: inline-block;
+}
+
+.invisible_button{
+    background-color: inherit !important;
+    border: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: ($spacer * .25) !important;
+    padding-right: 0 !important;
+}
+
+/* Three column layout */
+.side {
+  float: left;
+  width: 15%;
+  margin-top: 10px;
+}
+
+.middle {
+  float: left;
+  width: 70%;
+  margin-top: 10px;
+}
+
+/* Place text to the right */
+.right {
+  text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+  .side, .middle {
+    width: 100%;
+  }
+  /* Hide the right column on small screens */
+  .right {
+    display: none;
+  }
+}
+
+.ratingbox{
+  font-family: Arial;
+  margin: 0 auto; /* Center website */
+  max-width: 800px; /* Max width */
+  padding: 20px;
+}

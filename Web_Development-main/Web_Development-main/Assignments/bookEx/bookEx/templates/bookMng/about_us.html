@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block sidenav %}
+    {% for item in item_list %}
+    <li>
+        <a href="{{ item.link }}"> {{ item.item }} </a>
+    </li>
+    {% endfor %}
+{% endblock sidenav %}
+
+{% block content %}
+    <div class="about-us-page mt-5">
+        <h1 class="display-4 bg-light">About Us</h1>
+        <p class="lead">
+            Welcome to the Book Exchange System. This page is dedicated to providing
+            more information about our team and mission
+        </p>
+        <p class="lead">
+            Our goal is to make books accessible to everyone, everywhere. We are working
+            towards expanding our platform to include more educational resources.
+        </p>
+        <h1 class="mt-4 mb-3">Meet Our Team:</h1>
+        <div class="row" id="teams">
+            <div class="col-sm-6 mb-4" id="team">
+                <div class="text-block p-3 bg-light border rounded">
+                    <h3>
+                        <img src="{% static 'pfp.jpg' %}" class="img-thumbnail" alt="Cesar Almendarez" width="50px">
+                        Cesar Almendarez
+                    </h3>
+                    <p>
+                        I worked on...
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6 mb-4" id="team">
+                <div class="text-block p-3 bg-light border rounded">
+                    <h3>
+                        <img src="{% static 'pfp2.jpg' %}" class="img-thumbnail" alt="Darius Ayvazian" width="50px">
+                        Darius Ayvazian
+                    </h3>
+                    <p>
+                        I worked on...
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6 mb-4" id="team">
+                <div class="text-block p-3 bg-light border rounded">
+                    <h3>
+                        <img src="{% static 'pfp3.jpg' %}" class="img-thumbnail" alt="Christian Chun" width="50px">
+                        Christian Chun
+                    </h3>
+                    <p>
+                        I worked on...
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6 mb-4" id="team">
+                <div class="text-block p-3 bg-light border rounded">
+                    <h3>
+                        <img src="{% static 'pfp4.jpg' %}" class="img-thumbnail" alt="Anthony Diaz" width="50px">
+                        Anthony Diaz
+                    </h3>
+                    <p>
+                        I worked on...
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6 mb-4" id="team">
+                <div class="text-block p-3 bg-light border rounded">
+                    <h3>
+                        <img src="{% static 'pfp5.jpg' %}" class="img-thumbnail" alt="Kevin Ortez" width="50px">
+                        Kevin Ortez
+                    </h3>
+                    <p>
+                        I worked on...
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6 mb-4" id="team">
+                <div class="text-block p-3 bg-light border rounded">
+                    <h3>
+                        <img src="{% static 'pfp6.jpg' %}" class="img-thumbnail" alt="Kenny Zhang" width="50px">
+                        Kenny Zhang
+                    </h3>
+                    <p>
+                        I worked on...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact my-4">
+            <h2>Contact Us</h2>
+            <p class="lead">
+            For more information or to get involved, email us at <a href="mailto:email@bookex.com">email@bookex.com</a>
+            </p>
+        </div>
+    </div>
+
+{% endblock content %}

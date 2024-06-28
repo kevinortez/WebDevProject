@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Your Shopping Cart</h2>
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Image</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in cart_items %}
+      <tr>
+        <td>{{ item.book.name }}</td>
+        <td><img src="{% static item.book.pic_path %}" height="50" width="50"></td>
+        <td>{{ item.quantity }}</td>
+        <td>${{ item.book.price }}</td>
+        <td>
+          <form method="post" action="{% url 'remove_from_cart' item.id %}">
+        {% csrf_token %}
+        <button class="btn btn-large btn-danger" type="submit"> <img src="{% static 'red_x.png' %}" height="12"> Remove from Cart</button>
+      </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p>Total Price: ${{ total_price }}</p>
+{% endblock content %}

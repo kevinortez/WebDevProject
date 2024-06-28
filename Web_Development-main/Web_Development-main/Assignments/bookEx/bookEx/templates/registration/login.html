@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{$ load static %}
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block sidenav %}
+{% endblock sidenav %}
+{% block login_check %}
+{% endblock login_check%}
+{% block content %}
+    <h1> User Login Page</h1>
+        <form action="{% url 'login' %}" method="post" >
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td colspan = "2">
+                        <input type="submit" value="login">
+                    </td>
+                </tr>
+            </table>
+            <p>
+                Don't have an account? <a href="{% url 'register' %}">Register Here</a>
+            </p>
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% csrf_token %}
+        </form>
+{% endblock content %}

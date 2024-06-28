@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Display Books
+{% endblock title %}
+
+{% block login_check %}
+{% endblock login_check %}
+{% block content %}
+    <h1>Home Page</h1>
+    {% if not user.is_authenticated %}
+        <p>
+        <a href="{% url 'register' %}">To Register</a>
+        </p>
+
+        <p>
+            <a href="{% url 'login' %}?next=/">To Login</a>
+        </p>
+    {% endif %}
+
+
+{% endblock content %}

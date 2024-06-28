@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Display Books
+{% endblock title %}
+
+
+{% block content %}
+    <h1 align="center"> This is our Book Exchange System</h1>
+    <table border="2" width = "400">
+        <tr>
+            <th>Book Name</th>
+            <th>Cover</th>
+        </tr>
+        {% for book in book_list %}
+            <tr>
+                <td>
+                    <a href="book_detail/{{ book.id }}">
+                        {{ book.name }}
+                    </a>
+                </td>
+                <td> <img src="{% static book.pic_path %}" height="50"> </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
